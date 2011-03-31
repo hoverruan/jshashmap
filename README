@@ -1,0 +1,46 @@
+JS HashMap, the implementation of HashMap and HashSet in JavaScript.
+
+This code is separated from the JSClass(http://jsclass.jcoglan.com/hash.html):
+
+"JavaScript's native object class could be considered a basic kind of hashtable
+in which the keys must be strings. This class provides a more general-purpose
+implementation with many helpful methods not provided by JavaScript. The keys
+in a Hash may be numbers, strings, or any object that implements the equals()
+and hash() methods"
+
+Example:
+
+function Point(x, y) {
+  this.x = x;
+  this.y = y;
+}
+
+Point.prototype.equals = function(other) {
+  return this.x === other.x && this.y === other.y;
+};
+
+Point.prototype.hash = function() {
+  return [this.x, this.y].join(',');
+};
+
+var set = new HashSet();
+
+var p1 = new Point(1, 2);
+set.add(p1);	// set.size() == 1
+var p2 = new Point(1, 2);
+set.add(p2);	// set.size() == 1, because p1.equals(p2) == true
+
+var p3 = new Point(2, 2);
+set.add(p3);	// set.size() == 2
+
+// go through each item
+set.forEach(function(p) {
+  alert(p.x + ', ' + p.y);
+});
+
+var map = new HashMap();
+// ...
+// go through each pair in as map
+map.forEach(function(key, value) {
+  // ...
+});
